@@ -122,6 +122,7 @@ coverage
 ############################
 
 .env
+.env.example
 license.txt
 exports
 .strapi
@@ -129,3 +130,38 @@ dist
 build
 .strapi-updater.json
 .strapi-cloud.json
+
+
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Build output
+dist/
+build/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Docker
+docker-compose.override.yml
+*.dockerfile
+
+# Temporary files
+tmp/
+temp/
+.cache/
+*.tgz
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Outros arquivos que você pode querer ignorar
+public/uploads/*

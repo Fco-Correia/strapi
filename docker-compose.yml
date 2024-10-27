@@ -1,0 +1,30 @@
+services:
+  strapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "1337:1337"  # Mapeia a porta 1337 do container para a porta 1337 da máquina
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_NAME: blog-strapi  # Nome do banco de dados
+      DATABASE_HOST: db            # Host do banco de dados
+      DATABASE_PORT: 5432          # Porta do banco de dados
+      DATABASE_USERNAME: strapi_user # Usuário do banco de dados
+      DATABASE_PASSWORD: strapi_password # Senha do banco de dados
+    depends_on: # so sobe depois do db
+      - db
+    volumes:
+      - ./src:/usr/src/app/src   # Mapeia o diretório src do container para a máquina local //aqui eu coloquei isso pra ver as coisas de collections q eu tava criando na interface
+
+  db:
+    image: postgres:14
+    volumes:
+      - pg_data:/var/lib/postgresql/data  # Persistência de dados
+    environment:
+      POSTGRES_USER: strapi_user          # Usuário do PostgreSQL
+      POSTGRES_PASSWORD: strapi_password   # Senha do PostgreSQL
+      POSTGRES_DB: blog-strapi             # Nome do banco de dados
+
+volumes:
+  pg_data:
